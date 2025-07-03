@@ -2,13 +2,13 @@ import Hero from "@/components/Hero"
 import About from "@/components/About"
 import FeaturedWork from "@/components/FeaturedWork"
 import Services from "@/components/Services"
+import VideoSection from "@/components/VideoSection"
 import ContactSection from "@/components/ContactSection"
 import { siteData } from "@/config/siteData"
-import WeddingGallery from "@/components/WeddingGallery"
-import Vid from "@/components/vid"
+
 export default function HomePage() {
   return (
-    <div className="min-h-screen">
+    <main>
       <Hero
         image={siteData.hero.mainImage}
         alt={siteData.hero.alt}
@@ -16,11 +16,10 @@ export default function HomePage() {
         subtitle={siteData.hero.subtitle}
       />
       <About data={siteData.about} />
-      {/* <WeddingGallery /> */}
       <FeaturedWork data={siteData.featuredWork} />
-      {/* <Vid /> */}
       <Services data={siteData.services} />
+      <VideoSection />
       <ContactSection data={siteData.contact} />
-    </div>
+    </main>
   )
 }

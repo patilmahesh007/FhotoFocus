@@ -67,6 +67,8 @@ const statistics = [
 ]
 
 export default function AchievementsPage() {
+  const IconComponent = achievements[0].icon
+
   return (
     <div className="min-h-screen pt-20 bg-[#fdf5ec]">
       <div className="container mx-auto px-4 py-12">
@@ -95,14 +97,51 @@ export default function AchievementsPage() {
         <div className="mb-16">
           <h2 className="font-playfair text-3xl md:text-4xl font-light text-center mb-12">Awards & Recognition</h2>
 
-          <div className="space-y-8">
-            {achievements.map((achievement, index) => (
-              <div
-                key={achievement.id}
-                className={`flex flex-col ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} gap-8 items-center`}
-              >
-                <div className="w-full md:w-1/2">
-                  <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-xl">
+          {/* First Achievement - Horizontal Layout */}
+          <div className="mb-12">
+            <div className="flex flex-col md:flex-row gap-8 items-center">
+              <div className="w-full md:w-1/2">
+                <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-xl">
+                  <Image
+                    src={achievements[0].image || "/placeholder.svg"}
+                    alt={achievements[0].title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+
+              <div className="w-full md:w-1/2 space-y-4">
+                <div className="flex items-center gap-4">
+                  <div className="bg-amber-100 p-3 rounded-full">
+                    <IconComponent className="w-6 h-6 text-amber-700" />
+                  </div>
+                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
+                    {achievements[0].year}
+                  </span>
+                </div>
+
+                <h3 className="font-playfair text-2xl md:text-3xl font-medium text-gray-800">
+                  {achievements[0].title}
+                </h3>
+
+                <p className="text-amber-700 font-medium">{achievements[0].organization}</p>
+
+                <p className="text-gray-600 leading-relaxed">{achievements[0].description}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Remaining Achievements - Vertical Cards in Row */}
+          <div className="grid md:grid-cols-3 gap-8">
+            {achievements.slice(1).map((achievement) => {
+              const CardIcon = achievement.icon
+              return (
+                <div
+                  key={achievement.id}
+                  className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                >
+                  <div className="relative h-48">
                     <Image
                       src={achievement.image || "/placeholder.svg"}
                       alt={achievement.title}
@@ -110,26 +149,28 @@ export default function AchievementsPage() {
                       className="object-cover"
                     />
                   </div>
-                </div>
 
-                <div className="w-full md:w-1/2 space-y-4">
-                  <div className="flex items-center gap-4">
-                    <div className="bg-amber-100 p-3 rounded-full">
-                      <achievement.icon className="w-6 h-6 text-amber-700" />
+                  <div className="p-6 space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className="bg-amber-100 p-2 rounded-full">
+                        <CardIcon className="w-5 h-5 text-amber-700" />
+                      </div>
+                      <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-medium">
+                        {achievement.year}
+                      </span>
                     </div>
-                    <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
-                      {achievement.year}
-                    </span>
+
+                    <h3 className="font-playfair text-xl font-medium text-gray-800 line-clamp-2">
+                      {achievement.title}
+                    </h3>
+
+                    <p className="text-amber-700 font-medium text-sm">{achievement.organization}</p>
+
+                    <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">{achievement.description}</p>
                   </div>
-
-                  <h3 className="font-playfair text-2xl md:text-3xl font-medium text-gray-800">{achievement.title}</h3>
-
-                  <p className="text-amber-700 font-medium">{achievement.organization}</p>
-
-                  <p className="text-gray-600 leading-relaxed">{achievement.description}</p>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
 

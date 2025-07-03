@@ -1,119 +1,116 @@
-import Link from "next/link"
+import { Phone, Mail, MapPin, Instagram, Youtube } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Instagram, Mail, Phone } from "lucide-react"
+import Link from "next/link"
 
-interface ContactSectionProps {
-  data: {
-    title: string
-    subtitle: string
-    email: string
-    phone: string
-    social: {
-      instagram: string
-      youtube: string
-    }
+interface ContactData {
+  title: string
+  subtitle: string
+  phone: string
+  email: string
+  address: string
+  social: {
+    instagram: string
+    youtube: string
   }
 }
 
+interface ContactSectionProps {
+  data: ContactData
+}
+
 export default function ContactSection({ data }: ContactSectionProps) {
+  if (!data) return null
+
   return (
-    <section className="py-20 bg-gradient-to-tr from-gray-900 via-gray-800 to-gray-900 text-white">
+    <section className="bg-gradient-to-br from-stone-900 via-stone-800 to-amber-900 text-white py-12 sm:py-16 md:py-20">
       <div className="container mx-auto px-4">
-        {/* Grid: left = intro, right = contact card */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          {/* Left: Title & subtitle */}
-          <div className="flex flex-col justify-center text-center md:text-left">
-            <h2 className="font-playfair text-4xl md:text-5xl font-light mb-4">{data.title}</h2>
-            <p className="text-gray-300 text-lg max-w-xl mx-auto md:mx-0">{data.subtitle}</p>
+        <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
+          {/* Brand & CTA Column */}
+          <div className="lg:col-span-1 space-y-4 sm:space-y-6">
+            <div>
+              <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl font-light mb-3 sm:mb-4">FhotoFocus</h2>
+              <p className="text-stone-300 text-sm sm:text-base leading-relaxed mb-4 sm:mb-6">{data.subtitle}</p>
+              <Button asChild className="bg-amber-600 hover:bg-amber-700 text-white w-full sm:w-auto">
+                <Link href="/contact">Get a Quote</Link>
+              </Button>
+            </div>
           </div>
 
-          {/* Right: Contact Info Card */}
-          <div className="bg-gray-800 p-8 rounded-xl shadow-xl">
-            {/* Email */}
-            <div className="flex items-center mb-6">
-              <div className="p-3 bg-amber-700 rounded-full mr-4 flex-shrink-0">
-                <Mail className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h3 className="font-medium text-lg">Email</h3>
-                <a href={`mailto:${data.email}`} className="text-gray-300 hover:text-white transition-colors break-all">
-                  {data.email}
-                </a>
+          {/* Contact Info Column */}
+          <div className="lg:col-span-1 space-y-4 sm:space-y-6">
+            <h3 className="font-playfair text-lg sm:text-xl font-medium mb-3 sm:mb-4">Get in Touch</h3>
+
+            <div className="space-y-3 sm:space-y-4">
+              <Link
+                href={`tel:${data.phone}`}
+                className="flex items-center space-x-3 text-stone-300 hover:text-white transition-colors group"
+              >
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 group-hover:text-amber-300" />
+                <span className="text-sm sm:text-base">{data.phone}</span>
+              </Link>
+
+              <Link
+                href={`mailto:${data.email}`}
+                className="flex items-center space-x-3 text-stone-300 hover:text-white transition-colors group"
+              >
+                <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 group-hover:text-amber-300" />
+                <span className="text-sm sm:text-base">{data.email}</span>
+              </Link>
+
+              <div className="flex items-center space-x-3 text-stone-300">
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400" />
+                <span className="text-sm sm:text-base">{data.address}</span>
               </div>
             </div>
+          </div>
 
-            {/* Phone */}
-            <div className="flex items-center mb-6">
-              <div className="p-3 bg-amber-700 rounded-full mr-4 flex-shrink-0">
-                <Phone className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h3 className="font-medium text-lg">Phone</h3>
-                <a href={`tel:${data.phone}`} className="text-gray-300 hover:text-white transition-colors">
-                  {data.phone}
-                </a>
-              </div>
+          {/* Navigation & Social Column */}
+          <div className="lg:col-span-1 space-y-4 sm:space-y-6">
+            <h3 className="font-playfair text-lg sm:text-xl font-medium mb-3 sm:mb-4">Quick Links</h3>
+
+            <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-4 sm:mb-6">
+              <Link href="/gallery" className="text-stone-300 hover:text-white transition-colors text-sm sm:text-base">
+                Gallery
+              </Link>
+              <Link href="/about" className="text-stone-300 hover:text-white transition-colors text-sm sm:text-base">
+                About Us
+              </Link>
+              <Link href="/blogs" className="text-stone-300 hover:text-white transition-colors text-sm sm:text-base">
+                Blogs
+              </Link>
+              <Link
+                href="/achievements"
+                className="text-stone-300 hover:text-white transition-colors text-sm sm:text-base"
+              >
+                Achievements
+              </Link>
             </div>
 
-            {/* Divider */}
-            <div className="border-t border-gray-700 my-6" />
-
-            {/* Social */}
-            <div className="text-center">
-              <h3 className="font-medium text-lg mb-4">Follow Us</h3>
-              <div className="flex justify-center gap-6">
-                {/* Instagram */}
-                <a
+            <div>
+              <h4 className="font-medium mb-3 text-sm sm:text-base">Follow Us</h4>
+              <div className="flex space-x-3 sm:space-x-4">
+                <Link
                   href={data.social.instagram}
-                  className="p-2 bg-gray-700 rounded-full hover:bg-amber-600 transition-colors"
-                  aria-label="Instagram"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  className="text-stone-300 hover:text-white transition-colors"
                 >
-                  <Instagram className="h-5 w-5 text-white" />
-                </a>
-                {/* YouTube */}
-                <a
+                  <Instagram className="w-5 h-5 sm:w-6 sm:h-6" />
+                </Link>
+                <Link
                   href={data.social.youtube}
-                  className="p-2 bg-gray-700 rounded-full hover:bg-amber-600 transition-colors"
-                  aria-label="YouTube"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  className="text-stone-300 hover:text-white transition-colors"
                 >
-                  {/* Inline SVG for YouTube icon */}
-                  <svg
-                    className="h-5 w-5 text-white"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M23.498 6.186a2.997 2.997 0 00-2.115-2.117C19.611 3.5 12 3.5 12 3.5s-7.611 0-9.383.569a2.997 2.997 0 00-2.115 2.117A31.88 31.88 0 000 12a31.88 31.88 0 00.502 5.814 2.997 2.997 0 002.115 2.117c1.772.569 9.383.569 9.383.569s7.611 0 9.383-.569a2.997 2.997 0 002.115-2.117A31.88 31.88 0 0024 12a31.88 31.88 0 00-.502-5.814zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
-                  </svg>
-                </a>
+                  <Youtube className="w-5 h-5 sm:w-6 sm:h-6" />
+                </Link>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Call-to-action button */}
-        <div className="mt-12 text-center">
-          <Button asChild size="lg" className="bg-amber-700 hover:bg-amber-800 w-full sm:w-auto">
-            <Link href="/contact">Contact Us</Link>
-          </Button>
-        </div>
-
-        {/* Footer note */}
-        <div className="mt-10 text-center text-sm text-gray-400">
-          © {new Date().getFullYear()}{" "}
-          <a
-            href="https://www.shrishtiwebsolutions.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-white transition-colors"
-          >
-            ShrishtiWebSolutions.com
-          </a>
-          . All rights reserved.
+        {/* Copyright */}
+        <div className="border-t border-stone-700 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+          <p className="text-stone-400 text-xs sm:text-sm">© 2024 FhotoFocus Photography. All rights reserved.</p>
         </div>
       </div>
     </section>
