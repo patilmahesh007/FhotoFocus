@@ -1,6 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import Image from "next/image"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export default function FeaturedWork() {
   const data = {
@@ -36,10 +36,10 @@ export default function FeaturedWork() {
         slug: "Priyanshi-and-Akshay",
       },
     ],
-  };
+  }
 
   return (
-    <section className="mt-20 py-20 bg-[#fdf5ec]">
+    <section className="py-20 bg-[#fdf5ec]">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="font-proxima text-4xl md:text-5xl font-light mb-4">{data.title}</h2>
@@ -51,10 +51,11 @@ export default function FeaturedWork() {
             <Link
               key={portfolio.id}
               href={`/portfolio/${portfolio.slug}`}
-              className="group w-full sm:w-[48%] lg:w-[22%]">
+              className="group w-full sm:w-[48%] lg:w-[22%]"
+            >
               <div className="relative h-[400px] overflow-hidden rounded-lg mb-4">
                 <Image
-                  src={portfolio.image}
+                  src={portfolio.image || "/placeholder.svg"}
                   alt={portfolio.title}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
@@ -65,7 +66,6 @@ export default function FeaturedWork() {
                 <h3 className="font-proxima text-xl text-lg font-medium mb-1">{portfolio.title}</h3>
                 {/* <p className="text-sm text-gray-600">{portfolio.category}</p> */}
               </div>
-
             </Link>
           ))}
         </div>
@@ -77,5 +77,5 @@ export default function FeaturedWork() {
         </div>
       </div>
     </section>
-  );
+  )
 }

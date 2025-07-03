@@ -1,18 +1,18 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Instagram, Mail, Phone } from "lucide-react";
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Instagram, Mail, Phone } from "lucide-react"
 
 interface ContactSectionProps {
   data: {
-    title: string;
-    subtitle: string;
-    email: string;
-    phone: string;
+    title: string
+    subtitle: string
+    email: string
+    phone: string
     social: {
-      instagram: string;
-      youtube: string;
-    };
-  };
+      instagram: string
+      youtube: string
+    }
+  }
 }
 
 export default function ContactSection({ data }: ContactSectionProps) {
@@ -23,12 +23,8 @@ export default function ContactSection({ data }: ContactSectionProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Left: Title & subtitle */}
           <div className="flex flex-col justify-center text-center md:text-left">
-            <h2 className="font-playfair text-4xl md:text-5xl font-light mb-4">
-              {data.title}
-            </h2>
-            <p className="text-gray-300 text-lg max-w-xl mx-auto md:mx-0">
-              {data.subtitle}
-            </p>
+            <h2 className="font-playfair text-4xl md:text-5xl font-light mb-4">{data.title}</h2>
+            <p className="text-gray-300 text-lg max-w-xl mx-auto md:mx-0">{data.subtitle}</p>
           </div>
 
           {/* Right: Contact Info Card */}
@@ -40,10 +36,7 @@ export default function ContactSection({ data }: ContactSectionProps) {
               </div>
               <div>
                 <h3 className="font-medium text-lg">Email</h3>
-                <a
-                  href={`mailto:${data.email}`}
-                  className="text-gray-300 hover:text-white transition-colors break-all"
-                >
+                <a href={`mailto:${data.email}`} className="text-gray-300 hover:text-white transition-colors break-all">
                   {data.email}
                 </a>
               </div>
@@ -56,10 +49,7 @@ export default function ContactSection({ data }: ContactSectionProps) {
               </div>
               <div>
                 <h3 className="font-medium text-lg">Phone</h3>
-                <a
-                  href={`tel:${data.phone}`}
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
+                <a href={`tel:${data.phone}`} className="text-gray-300 hover:text-white transition-colors">
                   {data.phone}
                 </a>
               </div>
@@ -107,11 +97,7 @@ export default function ContactSection({ data }: ContactSectionProps) {
 
         {/* Call-to-action button */}
         <div className="mt-12 text-center">
-          <Button
-            asChild
-            size="lg"
-            className="bg-amber-700 hover:bg-amber-800 w-full sm:w-auto"
-          >
+          <Button asChild size="lg" className="bg-amber-700 hover:bg-amber-800 w-full sm:w-auto">
             <Link href="/contact">Contact Us</Link>
           </Button>
         </div>
@@ -131,5 +117,5 @@ export default function ContactSection({ data }: ContactSectionProps) {
         </div>
       </div>
     </section>
-  );
+  )
 }

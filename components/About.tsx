@@ -1,5 +1,3 @@
-import React from 'react';
-
 // Image URLs Object - replace or add missing entries as needed
 const imageUrls = {
   portraitGirl: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501499/_J7A3450_sfixoc.jpg", // Top Left
@@ -9,28 +7,28 @@ const imageUrls = {
   weddingDetails: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501565/_A2A0821_lu9mj8.jpg", // Bottom Right Small
   extraImage: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501497/_J7A3086_fktcdt.jpg",
   weddingPortraitCloseup: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501540/VS1_66_rf2nxp.jpg", // Extra Image
-  romanceLogo: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501540/VS1_66_rf2nxp.jpg" // Background with overlay
-};
+  romanceLogo: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501540/VS1_66_rf2nxp.jpg", // Background with overlay
+}
 
 // Simple helper to render an image or fallback if missing
 const RenderImageOrFallback = ({ src, alt, className }) => {
   if (!src) {
-    console.warn(`Missing image URL for "${alt}"`);
+    console.warn(`Missing image URL for "${alt}"`)
     return (
-      <div className={`w-full h-full bg-gray-200 flex items-center justify-center ${className || ''}`}>
+      <div className={`w-full h-full bg-gray-200 flex items-center justify-center ${className || ""}`}>
         <span className="text-gray-500 text-sm">Image not available</span>
       </div>
-    );
+    )
   }
-  return <img src={src} alt={alt} className={className} />;
-};
+  return <img src={src || "/placeholder.svg"} alt={alt} className={className} />
+}
 
 const MasonryGrid = () => {
   return (
-    <div className="min-h-screen bg-[#e1b5320d] p-2 sm:p-4">
+    <div className="min-h-screen bg-[#e1b5320d] p-2 sm:p-4 mb-8">
       <div className="max-w-6xl mx-auto">
         {/* Desktop Masonry Grid Layout */}
-        <div className="hidden md:grid grid-cols-12 gap-4" style={{ height: '90vh' }}>
+        <div className="hidden md:grid grid-cols-12 gap-4" style={{ height: "90vh" }}>
           {/* Top Left - Portrait Girl */}
           <div className="col-span-3 row-span-3">
             <div className="h-full border-2 border-gray-300 rounded-lg overflow-hidden bg-white">
@@ -57,7 +55,7 @@ const MasonryGrid = () => {
           <div className="col-span-6 row-span-6">
             <div className="h-full border-2 border-gray-300 rounded-lg overflow-hidden bg-white relative">
               <img
-                src={imageUrls.coupleHappy}
+                src={imageUrls.coupleHappy || "/placeholder.svg"}
                 alt="Happy Couple"
                 className="w-full h-full object-cover"
               />
@@ -86,9 +84,7 @@ const MasonryGrid = () => {
             <div
               className="h-full border-2 border-gray-300 rounded-lg overflow-hidden bg-center bg-cover flex items-center justify-center"
               style={{ backgroundImage: `url('${imageUrls.romanceLogo}')` }}
-            >
-             
-            </div>
+            ></div>
           </div>
 
           {/* Bottom Right Bottom - Wedding Details */}
@@ -109,7 +105,11 @@ const MasonryGrid = () => {
         <div className="md:hidden space-y-4">
           {/* Mobile - Couple with Blogg */}
           <div className="h-80 relative border-2 border-gray-300 rounded-lg overflow-hidden bg-white">
-            <img src={imageUrls.coupleHappy} alt="Happy Couple" className="w-full h-full object-cover" />
+            <img
+              src={imageUrls.coupleHappy || "/placeholder.svg"}
+              alt="Happy Couple"
+              className="w-full h-full object-cover"
+            />
             <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
               <div className="text-center text-white">
                 <h2 className="text-4xl font-bold mb-2 opacity-90">Blogg</h2>
@@ -146,9 +146,7 @@ const MasonryGrid = () => {
             <div
               className="relative border-2 border-gray-300 rounded-lg overflow-hidden bg-cover bg-center"
               style={{ backgroundImage: `url('${imageUrls.romanceLogo}')` }}
-            >
-             
-            </div>
+            ></div>
             <div className="border-2 border-gray-300 rounded-lg overflow-hidden bg-white">
               <RenderImageOrFallback
                 src={imageUrls.weddingDetails}
@@ -160,16 +158,12 @@ const MasonryGrid = () => {
 
           {/* Mobile - Extra Image (visible only on mobile) */}
           <div className="h-40 border-2 border-gray-300 rounded-lg overflow-hidden bg-white">
-            <RenderImageOrFallback
-              src={imageUrls.extraImage}
-              alt="Extra"
-              className="w-full h-full object-cover"
-            />
+            <RenderImageOrFallback src={imageUrls.extraImage} alt="Extra" className="w-full h-full object-cover" />
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default MasonryGrid;
+export default MasonryGrid

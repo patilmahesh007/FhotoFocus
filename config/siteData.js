@@ -1,11 +1,10 @@
-
 export const siteData = {
   // Hero section data
   hero: {
     mainImage: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750310782/Screenshot_2025-06-19_105119_m96ahe.png",
     alt: "Elegant couple portrait in black and white",
-    title: "Vishal Shirke Photography",
-    subtitle: "Modern ◆ Luxury ◆ Destination ",
+    title: "FhotoFocus Photography",
+    subtitle: "Modern ◆ Luxury ◆ Destination ",
   },
 
   // Featured work section
@@ -60,43 +59,41 @@ export const siteData = {
   },
 
   // Services section
-services: {
-  title: "Our Offerings",
-  services: [
-    {
-      name: "Bridal Portrait Sessions",
-      description: "Artistic solo and couple portraits that showcase your personality and style.",
-      icon: "📸",
-    },
-    {
-      name: "Engagement Highlights",
-      description: "Personalized pre-wedding shoots capturing authentic moments in scenic settings.",
-      icon: "💖",
-    },
-    {
-      name: "Documentary Films",
-      description: "Story-driven wedding films with cinematic editing to relive every emotion.",
-      icon: "🎥",
-    },
-    {
-      name: "Destination Elopements",
-      description: "Intimate coverage of elopements in breathtaking locations around the world.",
-      icon: "🌎",
-    },
-  ],
-},
-
+  services: {
+    title: "Our Offerings",
+    services: [
+      {
+        name: "Bridal Portrait Sessions",
+        description: "Artistic solo and couple portraits that showcase your personality and style.",
+        icon: "📸",
+      },
+      {
+        name: "Engagement Highlights",
+        description: "Personalized pre-wedding shoots capturing authentic moments in scenic settings.",
+        icon: "💖",
+      },
+      {
+        name: "Documentary Films",
+        description: "Story-driven wedding films with cinematic editing to relive every emotion.",
+        icon: "🎥",
+      },
+      {
+        name: "Destination Elopements",
+        description: "Intimate coverage of elopements in breathtaking locations around the world.",
+        icon: "🌎",
+      },
+    ],
+  },
 
   // Contact section
   contact: {
     title: "Lets Turn Moments Into Art",
-    subtitle:
-      "Excited to see your special day in a new light? Let’s connect and plan how to capture it beautifully",
-    email: "Vishalshirkephotography@gmail.com",
+    subtitle: "Excited to see your special day in a new light? Let's connect and plan how to capture it beautifully",
+    email: "fhotofocusphotography@gmail.com",
     phone: "+91 83080 94739",
     social: {
-      instagram: "https://www.instagram.com/vishalshirkephotography/#",
-      youtube: "https://www.youtube.com/@vishalshirkephotography",
+      instagram: "https://www.instagram.com/fhotofocusphotography/#",
+      youtube: "https://www.youtube.com/@fhotofocusphotography",
     },
   },
 }

@@ -1,21 +1,12 @@
 "use client"
 
-import React, { useState } from "react"
+import type React from "react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import {
-  Calendar,
-  MapPin,
-  Users,
-  Camera,
-  Mail,
-  Phone,
-  User,
-  MessageCircle,
-  DollarSign,
-} from "lucide-react"
+import { Calendar, MapPin, Users, Camera, Mail, Phone, User, MessageCircle } from "lucide-react"
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -97,13 +88,10 @@ export default function ContactForm() {
             <Camera className="w-8 h-8 text-amber-700" />
           </div>
           {/* Heading uses font-heading */}
-  <h1 className="text-4xl font-serif text-gray-900 mb-4">
-  Let Team VSPF capture your story
-</h1>
-<p className="text-xl font-serif text-gray-600 max-w-2xl mx-auto leading-relaxed">
-  Tell us about your special day, and we'll create timeless memories that you'll treasure forever.
-</p>
-
+          <h1 className="text-4xl font-serif text-gray-900 mb-4">Let Team FF capture your story</h1>
+          <p className="text-xl font-serif text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Tell us about your special day, and we'll create timeless memories that you'll treasure forever.
+          </p>
         </div>
 
         {/* Success Message */}
@@ -196,7 +184,8 @@ export default function ContactForm() {
             <div className="space-y-6">
               <h2 className="text-2xl font-heading  text-gray-900 flex items-center justify-center gap-3">
                 <User className="w-6 h-6 text-amber-700" />
-                Event details</h2>
+                Event details
+              </h2>
 
               <div className="grid md:grid-cols-2 gap-6">
                 {/* Event Date */}
@@ -274,17 +263,14 @@ export default function ContactForm() {
               <div className="space-y-4">
                 <Label className="text-sm font-medium text-gray-700">What is your budget? (optional)</Label>
                 <div className="grid gap-3">
-                  {[
-                    "₹1,00,000 to ₹1,50,000",
-                    "₹1,50,000 to ₹2,00,000",
-                    "₹2,00,000 to ₹3,00,000",
-                  ].map((range) => (
+                  {["₹1,00,000 to ₹1,50,000", "₹1,50,000 to ₹2,00,000", "₹2,00,000 to ₹3,00,000"].map((range) => (
                     <label key={range} className="group cursor-pointer">
                       <div
-                        className={`flex items-center p-3 rounded-lg border-2 transition-all duration-200 ${formData.budget === range
+                        className={`flex items-center p-3 rounded-lg border-2 transition-all duration-200 ${
+                          formData.budget === range
                             ? "border-amber-500 bg-amber-50"
                             : "border-gray-200 hover:border-amber-300"
-                          }`}
+                        }`}
                       >
                         <input
                           type="radio"
@@ -294,12 +280,15 @@ export default function ContactForm() {
                           onChange={handleChange}
                           className="sr-only"
                         />
-                        <span className={`font-medium ${formData.budget === range ? "text-amber-900" : "text-gray-700"}`}>
+                        <span
+                          className={`font-medium ${formData.budget === range ? "text-amber-900" : "text-gray-700"}`}
+                        >
                           {range}
                         </span>
                         <div
-                          className={`ml-auto w-4 h-4 rounded-full border-2 ${formData.budget === range ? "border-amber-500 bg-amber-500" : "border-gray-300"
-                            }`}
+                          className={`ml-auto w-4 h-4 rounded-full border-2 ${
+                            formData.budget === range ? "border-amber-500 bg-amber-500" : "border-gray-300"
+                          }`}
                         >
                           {formData.budget === range && <div className="w-2 h-2 bg-white rounded-full m-0.5"></div>}
                         </div>

@@ -1,4 +1,3 @@
-
 export const images = {
   // Photography gallery - Wedding Photography
   photography: {
