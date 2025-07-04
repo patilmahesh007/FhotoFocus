@@ -1,356 +1,474 @@
-import { notFound } from "next/navigation"
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
+import { useState, useEffect } from "react"
 import {
   ArrowLeft,
   Calendar,
   Clock,
   Heart,
-  MessageCircle,
+  Bookmark,
   Share2,
-  Instagram,
-  Facebook,
-  Twitter,
   Eye,
+  MessageCircle,
+  Filter,
   Grid,
   List,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 
-// Mock blog data - in a real app, this would come from a CMS or database
-const blogPosts = {
-  "wedding-photography-trends-2024": {
-    id: 1,
-    title: "Top Wedding Photography Trends for 2024",
-    slug: "wedding-photography-trends-2024",
-    excerpt:
-      "Discover the latest trends shaping wedding photography in 2024, from candid moments to creative compositions.",
-    content: `
-      <p>Wedding photography continues to evolve, and 2024 brings exciting new trends that couples are embracing for their special day. As a professional wedding photographer, I've observed these emerging styles that are reshaping how we capture love stories.</p>
-      
-      <h2>1. Authentic Candid Moments</h2>
-      <p>Gone are the days of overly posed shots. Couples are increasingly seeking photographers who can capture genuine emotions and spontaneous moments. This trend focuses on storytelling through natural interactions, laughter, and tears of joy.</p>
-      
-      <h2>2. Film Photography Revival</h2>
-      <p>There's a beautiful resurgence of film photography in weddings. The organic grain, rich colors, and timeless quality of film create images that feel both nostalgic and contemporary.</p>
-      
-      <h2>3. Drone Photography Integration</h2>
-      <p>Aerial shots are becoming more accessible and popular, offering unique perspectives of venues and ceremonies. However, it's important to use them tastefully and in compliance with local regulations.</p>
-      
-      <h2>4. Intimate Micro-Weddings</h2>
-      <p>The trend toward smaller, more intimate celebrations has influenced photography styles, with a focus on close-up details and emotional connections between fewer guests.</p>
-      
-      <h2>5. Sustainable Photography Practices</h2>
-      <p>Eco-conscious couples are choosing photographers who embrace sustainable practices, from digital delivery methods to environmentally friendly printing options.</p>
-    `,
-    author: {
-      name: "Vishal Shirke",
-      avatar: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501584/_J7A8868_da7lor.jpg",
-      bio: "Professional wedding photographer with over 10 years of experience capturing love stories across India and internationally.",
-    },
-    publishedAt: "2024-01-15",
+// Mock blog data
+const blogData = {
+  "aashka-shanil-fairmont-wedding": {
+    title: "Aashka and Shanil's Unforgettable Wedding Celebration at Fairmont and Raffles Jaipur",
+    date: "15 MAR, 2025",
     readTime: "8 min read",
-    category: "Photography Tips",
-    tags: ["Wedding Photography", "Trends", "2024", "Photography Tips"],
-    featuredImage: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501499/_J7A3450_sfixoc.jpg",
-    gallery: [
-      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501538/VS1_63_yftdsi.jpg",
-      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501584/_J7A8868_da7lor.jpg",
-      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501499/_J7A3450_sfixoc.jpg",
-    ],
-    likes: 124,
-    comments: 18,
-    shares: 32,
-    views: 1250,
-  },
-  "pre-wedding-shoot-guide": {
-    id: 2,
-    title: "The Ultimate Pre-Wedding Shoot Guide",
-    slug: "pre-wedding-shoot-guide",
-    excerpt:
-      "Everything you need to know about planning the perfect pre-wedding photoshoot, from location selection to styling tips.",
-    content: `
-      <p>Pre-wedding shoots have become an integral part of the wedding journey, offering couples a chance to get comfortable with their photographer and create beautiful memories before the big day.</p>
-      
-      <h2>Planning Your Pre-Wedding Shoot</h2>
-      <p>The key to a successful pre-wedding shoot lies in thorough planning. Start by discussing your vision with your photographer at least 2-3 months before your wedding date.</p>
-      
-      <h2>Choosing the Perfect Location</h2>
-      <p>Location sets the mood for your entire shoot. Consider places that hold special meaning for your relationship - where you first met, had your first date, or got engaged.</p>
-      
-      <h2>Styling and Wardrobe Tips</h2>
-      <p>Coordinate your outfits without being too matchy. Choose colors that complement each other and the location. Bring multiple outfit options for variety.</p>
-      
-      <h2>Best Times for Shooting</h2>
-      <p>Golden hour (the hour before sunset) provides the most flattering natural light. Early morning shoots can also be magical with soft, diffused lighting.</p>
-    `,
+    category: "Wedding",
     author: {
-      name: "Vishal Shirke",
-      avatar: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501584/_J7A8868_da7lor.jpg",
-      bio: "Professional wedding photographer with over 10 years of experience capturing love stories across India and internationally.",
+      name: "Abhishek Jain",
+      role: "Lead Photographer",
+      image: "/placeholder.svg?height=60&width=60",
+      bio: "Founder of FhotoFocus with over 8 years of wedding photography experience.",
     },
-    publishedAt: "2024-01-10",
-    readTime: "6 min read",
-    category: "Pre-Wedding",
-    tags: ["Pre-Wedding", "Photography Guide", "Couples", "Planning"],
-    featuredImage: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501538/VS1_63_yftdsi.jpg",
+    heroImage: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501499/_J7A3450_sfixoc.jpg",
+    content: {
+      lead: "Aashka and Shanil's wedding at Fairmont & Raffles Jaipur was nothing short of magical. Set against the backdrop of Jaipur's royal heritage, their celebration was a perfect blend of tradition, elegance, and contemporary style.",
+      sections: [
+        {
+          heading: "The Venue: A Royal Setting",
+          content:
+            "The Fairmont and Raffles Jaipur provided the perfect canvas for this grand celebration. With its stunning architecture and luxurious amenities, every corner offered a new perspective for capturing beautiful moments.",
+        },
+        {
+          heading: "Ceremonies That Touched Hearts",
+          content:
+            "From the intimate Mehendi ceremony to the grand wedding reception, each event was meticulously planned and beautifully executed. The couple's attention to detail was evident in every aspect of their celebration.",
+        },
+        {
+          heading: "Capturing Emotions",
+          content:
+            "Our team focused on capturing not just the grand moments, but also the intimate glances, the tears of joy, and the laughter that filled the air. These candid moments truly tell the story of Aashka and Shanil's love.",
+        },
+      ],
+    },
     gallery: [
-      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501499/_J7A3450_sfixoc.jpg",
-      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501538/VS1_63_yftdsi.jpg",
-      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501584/_J7A8868_da7lor.jpg",
+      {
+        id: 1,
+        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501499/_J7A3450_sfixoc.jpg",
+        caption: "The couple's first look moment",
+        category: "ceremony",
+      },
+      {
+        id: 2,
+        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501500/_J7A3451_qwerty.jpg",
+        caption: "Traditional Mehendi ceremony",
+        category: "mehendi",
+      },
+      {
+        id: 3,
+        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501501/_J7A3452_fashion.jpg",
+        caption: "Bridal portrait session",
+        category: "portraits",
+      },
+      {
+        id: 4,
+        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501502/_J7A3453_goa.jpg",
+        caption: "Reception celebration",
+        category: "reception",
+      },
+      {
+        id: 5,
+        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501499/_J7A3450_sfixoc.jpg",
+        caption: "Family moments",
+        category: "family",
+      },
+      {
+        id: 6,
+        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501500/_J7A3451_qwerty.jpg",
+        caption: "Couple's romantic session",
+        category: "couple",
+      },
     ],
-    likes: 89,
-    comments: 12,
-    shares: 24,
-    views: 890,
+    venue: {
+      name: "Fairmont & Raffles Jaipur",
+      location: "Jaipur, Rajasthan",
+      rating: 4.8,
+      description: "A luxury hotel that perfectly blends Rajasthani heritage with modern elegance.",
+    },
+    photographyDetails: {
+      equipment: "Canon EOS R5, Sony A7R IV",
+      lenses: "24-70mm f/2.8, 85mm f/1.4, 16-35mm f/2.8",
+      style: "Candid, Traditional, Contemporary",
+      team: "3 Photographers, 2 Videographers",
+    },
+    tags: ["Wedding", "Jaipur", "Luxury", "Traditional", "Fairmont", "Raffles"],
+    stats: {
+      views: 1247,
+      likes: 89,
+      comments: 23,
+    },
   },
 }
 
 const relatedPosts = [
   {
-    id: 3,
-    title: "Destination Wedding Photography Tips",
-    slug: "destination-wedding-photography",
-    excerpt: "Essential tips for capturing beautiful destination weddings.",
-    featuredImage: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501499/_J7A3450_sfixoc.jpg",
-    publishedAt: "2024-01-05",
-    readTime: "5 min read",
-    category: "Destination Weddings",
+    id: 1,
+    title: "Priya & Arjun's Romantic Pre-Wedding Session",
+    image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501500/_J7A3451_qwerty.jpg",
+    slug: "priya-arjun-udaipur-prewedding",
   },
   {
-    id: 4,
-    title: "Monsoon Wedding Photography",
-    slug: "monsoon-wedding-photography",
-    excerpt: "How to create stunning photos during monsoon weddings.",
-    featuredImage: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501538/VS1_63_yftdsi.jpg",
-    publishedAt: "2024-01-01",
-    readTime: "7 min read",
-    category: "Seasonal Photography",
+    id: 2,
+    title: "Contemporary Fashion Editorial in Mumbai",
+    image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501501/_J7A3452_fashion.jpg",
+    slug: "fashion-editorial-mumbai",
   },
 ]
 
-export default function BlogPost({ params }: { params: { slug: string } }) {
-  const post = blogPosts[params.slug as keyof typeof blogPosts]
+export default function BlogDetailPage({ params }: { params: { slug: string } }) {
+  const [readingProgress, setReadingProgress] = useState(0)
+  const [isLiked, setIsLiked] = useState(false)
+  const [isBookmarked, setIsBookmarked] = useState(false)
+  const [galleryFilter, setGalleryFilter] = useState("all")
+  const [viewMode, setViewMode] = useState<"grid" | "masonry">("masonry")
+  const [showNewsletter, setShowNewsletter] = useState(false)
 
-  if (!post) {
-    notFound()
+  const blog = blogData[params.slug as keyof typeof blogData]
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight
+      const progress = (window.scrollY / totalHeight) * 100
+      setReadingProgress(progress)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  if (!blog) {
+    return <div>Blog post not found</div>
   }
 
-  return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <div className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh]">
-        <Image src={post.featuredImage || "/placeholder.svg"} alt={post.title} fill className="object-cover" priority />
-        <div className="absolute inset-0 bg-black/40" />
+  const filteredGallery =
+    galleryFilter === "all" ? blog.gallery : blog.gallery.filter((img) => img.category === galleryFilter)
 
-        {/* Back Button */}
-        <Link
-          href="/blogs"
-          className="absolute top-24 md:top-32 left-4 md:left-6 z-10 bg-white/90 hover:bg-white text-gray-900 px-3 py-2 md:px-4 md:py-2 rounded-full transition-all duration-300 flex items-center gap-2 text-sm md:text-base"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span className="hidden sm:inline">Back to Blogs</span>
-          <span className="sm:hidden">Back</span>
-        </Link>
+  const galleryCategories = ["all", ...Array.from(new Set(blog.gallery.map((img) => img.category)))]
+
+  return (
+    <div className="min-h-screen bg-[#f5f1eb]">
+      {/* Reading Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1 bg-stone-200 z-50">
+        <div
+          className="h-full bg-gradient-to-r from-amber-600 to-amber-700 transition-all duration-300"
+          style={{ width: `${readingProgress}%` }}
+        />
+      </div>
+
+      {/* Hero Section */}
+      <div className="relative h-screen">
+        <Image src={blog.heroImage || "/placeholder.svg"} alt={blog.title} fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+
+        {/* Navigation */}
+        <div className="absolute top-6 left-6 z-10">
+          <Link
+            href="/blogs"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Blogs</span>
+          </Link>
+        </div>
 
         {/* Hero Content */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8 bg-gradient-to-t from-black/80 to-transparent">
-          <div className="max-w-4xl mx-auto">
-            <Badge className="mb-3 md:mb-4 bg-white/20 text-white border-white/30">{post.category}</Badge>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-light text-white mb-3 md:mb-4 leading-tight">
-              {post.title}
-            </h1>
-            <p className="text-sm md:text-base lg:text-lg text-gray-200 mb-4 md:mb-6 max-w-2xl">{post.excerpt}</p>
+        <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+          <div className="container mx-auto">
+            <div className="max-w-4xl">
+              {/* Meta */}
+              <div className="flex items-center gap-6 mb-6 text-white/80">
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4" />
+                  <span>{blog.date}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4" />
+                  <span>{blog.readTime}</span>
+                </div>
+                <Badge variant="secondary" className="bg-white/20 text-white border-0">
+                  {blog.category}
+                </Badge>
+              </div>
 
-            {/* Meta Info */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 md:gap-4 text-gray-300 text-sm md:text-base">
-              <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4" />
-                <span>
-                  {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4" />
-                <span>{post.readTime}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Eye className="w-4 h-4" />
-                <span>{post.views.toLocaleString()} views</span>
-              </div>
+              {/* Title */}
+              <h1 className="font-playfair text-4xl md:text-6xl lg:text-7xl font-light text-white leading-tight mb-6">
+                {blog.title}
+              </h1>
+
+              {/* Lead */}
+              <p className="text-xl md:text-2xl text-white/90 font-light leading-relaxed max-w-3xl">
+                {blog.content.lead}
+              </p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid lg:grid-cols-4 gap-12">
           {/* Article Content */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3 space-y-12">
             {/* Social Actions */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 md:mb-8 p-4 bg-white rounded-lg shadow-sm">
-              <div className="flex items-center gap-4 mb-3 sm:mb-0">
-                <button className="flex items-center gap-2 text-gray-600 hover:text-red-500 transition-colors">
-                  <Heart className="w-5 h-5" />
-                  <span className="text-sm md:text-base">{post.likes}</span>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={() => setIsLiked(!isLiked)}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${
+                    isLiked ? "bg-red-100 text-red-600" : "bg-stone-100 text-stone-600 hover:bg-stone-200"
+                  }`}
+                >
+                  <Heart className={`w-4 h-4 ${isLiked ? "fill-current" : ""}`} />
+                  <span>{blog.stats.likes + (isLiked ? 1 : 0)}</span>
                 </button>
-                <button className="flex items-center gap-2 text-gray-600 hover:text-blue-500 transition-colors">
-                  <MessageCircle className="w-5 h-5" />
-                  <span className="text-sm md:text-base">{post.comments}</span>
+
+                <button
+                  onClick={() => setIsBookmarked(!isBookmarked)}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${
+                    isBookmarked ? "bg-amber-100 text-amber-600" : "bg-stone-100 text-stone-600 hover:bg-stone-200"
+                  }`}
+                >
+                  <Bookmark className={`w-4 h-4 ${isBookmarked ? "fill-current" : ""}`} />
+                  <span>Save</span>
                 </button>
-                <button className="flex items-center gap-2 text-gray-600 hover:text-green-500 transition-colors">
-                  <Share2 className="w-5 h-5" />
-                  <span className="text-sm md:text-base">{post.shares}</span>
+
+                <button className="flex items-center gap-2 px-4 py-2 bg-stone-100 text-stone-600 rounded-full hover:bg-stone-200 transition-all duration-300">
+                  <Share2 className="w-4 h-4" />
+                  <span>Share</span>
                 </button>
               </div>
 
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-500">Share:</span>
-                <button className="p-2 text-gray-600 hover:text-pink-500 transition-colors">
-                  <Instagram className="w-4 h-4" />
-                </button>
-                <button className="p-2 text-gray-600 hover:text-blue-600 transition-colors">
-                  <Facebook className="w-4 h-4" />
-                </button>
-                <button className="p-2 text-gray-600 hover:text-blue-400 transition-colors">
-                  <Twitter className="w-4 h-4" />
-                </button>
+              <div className="flex items-center gap-4 text-sm text-stone-500">
+                <div className="flex items-center gap-1">
+                  <Eye className="w-4 h-4" />
+                  <span>{blog.stats.views}</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <MessageCircle className="w-4 h-4" />
+                  <span>{blog.stats.comments}</span>
+                </div>
               </div>
             </div>
 
-            {/* Article Body */}
-            <div className="bg-white rounded-lg shadow-sm p-6 md:p-8 mb-8">
-              <div
-                className="prose prose-gray max-w-none prose-headings:font-light prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:leading-relaxed prose-h2:text-xl prose-h2:md:text-2xl prose-p:text-sm prose-p:md:text-base"
-                dangerouslySetInnerHTML={{ __html: post.content }}
-              />
+            {/* Article Sections */}
+            <div className="prose prose-lg max-w-none">
+              {blog.content.sections.map((section, index) => (
+                <div key={index} className="mb-12">
+                  <h2 className="font-playfair text-3xl font-light text-stone-800 mb-6">{section.heading}</h2>
+                  <p className="text-stone-600 leading-relaxed text-lg font-light">{section.content}</p>
+                </div>
+              ))}
             </div>
 
-            {/* Tags */}
-            <div className="bg-white rounded-lg shadow-sm p-6 md:p-8 mb-8">
-              <h3 className="text-lg md:text-xl font-medium text-gray-900 mb-4">Tags</h3>
-              <div className="flex flex-wrap gap-2">
-                {post.tags.map((tag) => (
-                  <Badge key={tag} variant="secondary" className="text-xs md:text-sm">
-                    {tag}
-                  </Badge>
-                ))}
+            {/* Photography Details */}
+            <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-8 border border-stone-200">
+              <h3 className="font-playfair text-2xl font-light text-stone-800 mb-6">Photography Details</h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-medium text-stone-700 mb-2">Equipment Used</h4>
+                  <p className="text-stone-600 font-light">{blog.photographyDetails.equipment}</p>
+                </div>
+                <div>
+                  <h4 className="font-medium text-stone-700 mb-2">Lenses</h4>
+                  <p className="text-stone-600 font-light">{blog.photographyDetails.lenses}</p>
+                </div>
+                <div>
+                  <h4 className="font-medium text-stone-700 mb-2">Photography Style</h4>
+                  <p className="text-stone-600 font-light">{blog.photographyDetails.style}</p>
+                </div>
+                <div>
+                  <h4 className="font-medium text-stone-700 mb-2">Team Size</h4>
+                  <p className="text-stone-600 font-light">{blog.photographyDetails.team}</p>
+                </div>
               </div>
             </div>
 
-            {/* Photo Gallery */}
-            <div className="bg-white rounded-lg shadow-sm p-6 md:p-8 mb-8">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6">
-                <h3 className="text-xl md:text-2xl font-light text-gray-900 mb-3 sm:mb-0">Photo Gallery</h3>
-                <div className="flex items-center gap-2">
-                  <button className="p-2 text-gray-600 hover:text-gray-900 transition-colors">
-                    <Grid className="w-5 h-5" />
-                  </button>
-                  <button className="p-2 text-gray-600 hover:text-gray-900 transition-colors">
-                    <List className="w-5 h-5" />
-                  </button>
+            {/* Venue Information */}
+            <div className="bg-gradient-to-r from-amber-50 to-stone-50 rounded-2xl p-8 border border-amber-200">
+              <h3 className="font-playfair text-2xl font-light text-stone-800 mb-4">Venue Information</h3>
+              <div className="flex items-start justify-between">
+                <div>
+                  <h4 className="text-xl font-medium text-stone-700 mb-2">{blog.venue.name}</h4>
+                  <p className="text-stone-600 mb-2">{blog.venue.location}</p>
+                  <p className="text-stone-600 font-light">{blog.venue.description}</p>
+                </div>
+                <div className="text-right">
+                  <div className="text-2xl font-bold text-amber-600">{blog.venue.rating}</div>
+                  <div className="text-sm text-stone-500">Rating</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Image Gallery */}
+            <div className="space-y-8">
+              <div className="flex items-center justify-between">
+                <h3 className="font-playfair text-3xl font-light text-stone-800">Wedding Gallery</h3>
+                <div className="flex items-center gap-4">
+                  {/* Filter */}
+                  <div className="flex items-center gap-2">
+                    <Filter className="w-4 h-4 text-stone-500" />
+                    <select
+                      value={galleryFilter}
+                      onChange={(e) => setGalleryFilter(e.target.value)}
+                      className="bg-white border border-stone-200 rounded-lg px-3 py-1 text-sm"
+                    >
+                      {galleryCategories.map((category) => (
+                        <option key={category} value={category}>
+                          {category.charAt(0).toUpperCase() + category.slice(1)}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* View Mode */}
+                  <div className="flex items-center bg-stone-100 rounded-lg p-1">
+                    <button
+                      onClick={() => setViewMode("grid")}
+                      className={`p-2 rounded ${viewMode === "grid" ? "bg-white shadow-sm" : ""}`}
+                    >
+                      <Grid className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => setViewMode("masonry")}
+                      className={`p-2 rounded ${viewMode === "masonry" ? "bg-white shadow-sm" : ""}`}
+                    >
+                      <List className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
-                {post.gallery.map((image, index) => (
-                  <div key={index} className="relative aspect-square rounded-lg overflow-hidden group cursor-pointer">
-                    <Image
-                      src={image || "/placeholder.svg"}
-                      alt={`Gallery image ${index + 1}`}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+              {/* Gallery Grid */}
+              <div
+                className={`grid gap-4 ${
+                  viewMode === "masonry" ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3" : "grid-cols-2 md:grid-cols-3"
+                }`}
+              >
+                {filteredGallery.map((image, index) => (
+                  <div
+                    key={image.id}
+                    className={`relative group rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ${
+                      viewMode === "masonry" && index === 0 ? "md:col-span-2 md:row-span-2" : ""
+                    } ${viewMode === "masonry" && index % 5 === 2 ? "md:row-span-2" : ""}`}
+                  >
+                    <div
+                      className={`relative ${
+                        viewMode === "masonry" && index === 0
+                          ? "h-96"
+                          : viewMode === "masonry" && index % 5 === 2
+                            ? "h-80"
+                            : "h-64"
+                      }`}
+                    >
+                      <Image
+                        src={image.url || "/placeholder.svg"}
+                        alt={image.caption}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <p className="text-sm font-light">{image.caption}</p>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Newsletter Signup */}
-            <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-lg p-6 md:p-8 text-white">
-              <h3 className="text-xl md:text-2xl font-light mb-2">Stay Updated</h3>
-              <p className="text-gray-300 mb-6 text-sm md:text-base">
-                Subscribe to our newsletter for the latest photography tips and wedding inspiration.
+            <div className="bg-gradient-to-r from-stone-800 to-stone-700 rounded-2xl p-8 text-white text-center">
+              <h3 className="font-playfair text-2xl font-light mb-4">Stay Updated</h3>
+              <p className="text-white/80 mb-6 font-light">
+                Subscribe to our newsletter for the latest wedding photography tips and featured stories.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Input
+              <div className="flex gap-4 max-w-md mx-auto">
+                <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+                  className="flex-1 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/30"
                 />
-                <Button className="bg-white text-gray-900 hover:bg-gray-100 px-6 py-2 text-sm md:text-base">
-                  Subscribe
-                </Button>
+                <Button className="bg-amber-600 hover:bg-amber-700 text-white">Subscribe</Button>
               </div>
+            </div>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2">
+              {blog.tags.map((tag) => (
+                <Badge key={tag} variant="secondary" className="bg-stone-200 text-stone-700">
+                  #{tag}
+                </Badge>
+              ))}
             </div>
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-1 space-y-6 md:space-y-8">
-            {/* Author Info */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
+          <div className="lg:col-span-1 space-y-8">
+            {/* Author */}
+            <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-stone-200">
               <div className="flex items-center gap-4 mb-4">
-                <div className="relative w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden">
-                  <Image
-                    src={post.author.avatar || "/placeholder.svg"}
-                    alt={post.author.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="min-w-0">
-                  <h4 className="font-medium text-gray-900 text-sm md:text-base">{post.author.name}</h4>
-                  <p className="text-gray-600 text-xs md:text-sm">Professional Photographer</p>
+                <Image
+                  src={blog.author.image || "/placeholder.svg"}
+                  alt={blog.author.name}
+                  width={60}
+                  height={60}
+                  className="rounded-full"
+                />
+                <div>
+                  <h4 className="font-medium text-stone-800">{blog.author.name}</h4>
+                  <p className="text-sm text-stone-600">{blog.author.role}</p>
                 </div>
               </div>
-              <p className="text-gray-700 text-sm leading-relaxed line-clamp-3">{post.author.bio}</p>
+              <p className="text-stone-600 text-sm font-light">{blog.author.bio}</p>
+            </div>
 
-              <div className="flex items-center gap-3 mt-4 pt-4 border-t border-gray-100">
-                <button className="text-gray-600 hover:text-pink-500 transition-colors">
-                  <Instagram className="w-5 h-5" />
-                </button>
-                <button className="text-gray-600 hover:text-blue-600 transition-colors">
-                  <Facebook className="w-5 h-5" />
-                </button>
-                <button className="text-gray-600 hover:text-blue-400 transition-colors">
-                  <Twitter className="w-5 h-5" />
-                </button>
-              </div>
+            {/* Table of Contents */}
+            <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-stone-200">
+              <h4 className="font-medium text-stone-800 mb-4">Table of Contents</h4>
+              <nav className="space-y-2">
+                {blog.content.sections.map((section, index) => (
+                  <a
+                    key={index}
+                    href={`#section-${index}`}
+                    className="block text-sm text-stone-600 hover:text-stone-800 transition-colors duration-200"
+                  >
+                    {section.heading}
+                  </a>
+                ))}
+              </nav>
             </div>
 
             {/* Related Posts */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <h3 className="text-lg md:text-xl font-medium text-gray-900 mb-6">Related Posts</h3>
+            <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-stone-200">
+              <h4 className="font-medium text-stone-800 mb-4">Related Stories</h4>
               <div className="space-y-4">
-                {relatedPosts.map((relatedPost) => (
-                  <Link key={relatedPost.id} href={`/blogs/${relatedPost.slug}`} className="block group">
-                    <div className="flex gap-3 md:gap-4">
-                      <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden flex-shrink-0">
+                {relatedPosts.map((post) => (
+                  <Link key={post.id} href={`/blogs/${post.slug}`} className="block group">
+                    <div className="flex gap-3">
+                      <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
                         <Image
-                          src={relatedPost.featuredImage || "/placeholder.svg"}
-                          alt={relatedPost.title}
+                          src={post.image || "/placeholder.svg"}
+                          alt={post.title}
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          className="object-cover group-hover:scale-110 transition-transform duration-300"
                         />
                       </div>
-                      <div className="min-w-0 flex-1">
-                        <h4 className="font-medium text-gray-900 group-hover:text-gray-700 transition-colors text-sm md:text-base line-clamp-2 mb-1">
-                          {relatedPost.title}
-                        </h4>
-                        <p className="text-gray-600 text-xs md:text-sm line-clamp-2 mb-2">{relatedPost.excerpt}</p>
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
-                          <span>{relatedPost.readTime}</span>
-                          <span>•</span>
-                          <span>{relatedPost.category}</span>
-                        </div>
+                      <div>
+                        <h5 className="text-sm font-medium text-stone-800 group-hover:text-amber-700 transition-colors duration-200 line-clamp-2">
+                          {post.title}
+                        </h5>
                       </div>
                     </div>
                   </Link>
@@ -358,25 +476,19 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
               </div>
             </div>
 
-            {/* Categories */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <h3 className="text-lg md:text-xl font-medium text-gray-900 mb-6">Categories</h3>
-              <div className="space-y-2">
-                {[
-                  "Wedding Photography",
-                  "Pre-Wedding",
-                  "Destination Weddings",
-                  "Photography Tips",
-                  "Behind the Scenes",
-                ].map((category) => (
-                  <Link
-                    key={category}
-                    href={`/blogs?category=${category.toLowerCase().replace(" ", "-")}`}
-                    className="block text-gray-600 hover:text-gray-900 transition-colors text-sm md:text-base py-1"
-                  >
-                    {category}
-                  </Link>
-                ))}
+            {/* Social Share */}
+            <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-stone-200">
+              <h4 className="font-medium text-stone-800 mb-4">Share This Story</h4>
+              <div className="flex gap-3">
+                <button className="flex-1 bg-blue-600 text-white py-2 px-3 rounded-lg text-sm hover:bg-blue-700 transition-colors duration-200">
+                  Facebook
+                </button>
+                <button className="flex-1 bg-sky-500 text-white py-2 px-3 rounded-lg text-sm hover:bg-sky-600 transition-colors duration-200">
+                  Twitter
+                </button>
+                <button className="flex-1 bg-pink-600 text-white py-2 px-3 rounded-lg text-sm hover:bg-pink-700 transition-colors duration-200">
+                  Instagram
+                </button>
               </div>
             </div>
           </div>

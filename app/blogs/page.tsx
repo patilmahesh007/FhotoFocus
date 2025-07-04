@@ -124,11 +124,7 @@ export default function BlogsPage() {
         </div>
 
         {/* Load More */}
-        <div className="text-center mt-20">
-          <button className="px-8 py-3 bg-stone-800 text-white font-light tracking-wide hover:bg-stone-700 transition-colors duration-300 rounded-full">
-            Load More Stories
-          </button>
-        </div>
+ 
       </div>
     </div>
   )

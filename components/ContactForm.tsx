@@ -98,7 +98,7 @@ export default function ContactForm() {
           </div>
           {/* Heading uses font-heading */}
   <h1 className="text-4xl font-serif text-gray-900 mb-4">
-  Let Team VSPF capture your story
+  Let Team FF capture your story
 </h1>
 <p className="text-xl font-serif text-gray-600 max-w-2xl mx-auto leading-relaxed">
   Tell us about your special day, and we'll create timeless memories that you'll treasure forever.
@@ -152,7 +152,7 @@ export default function ContactForm() {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="h-12 border-gray-200 focus:border-amber-500 focus:ring-amber-500 rounded-lg"
+                  className="h-12 border-gray-200 h-12 border-gray-200 focus:border-amber-500 focus:ring-amber-500 rounded-lg bg-white text-black focus:border-amber-500 focus:ring-amber-500 rounded-lg"
                   placeholder="Enter your full name"
                 />
               </div>
@@ -169,7 +169,7 @@ export default function ContactForm() {
                   type="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="h-12 border-gray-200 focus:border-amber-500 focus:ring-amber-500 rounded-lg"
+                  className="h-12 border-gray-200 h-12 border-gray-200 focus:border-amber-500 focus:ring-amber-500 rounded-lg bg-white text-black focus:border-amber-500 focus:ring-amber-500 rounded-lg"
                   placeholder="Enter your email"
                 />
               </div>
@@ -186,7 +186,7 @@ export default function ContactForm() {
                   required
                   value={formData.phone}
                   onChange={handleChange}
-                  className="h-12 border-gray-200 focus:border-amber-500 focus:ring-amber-500 rounded-lg"
+                  className="h-12 border-gray-200 h-12 border-gray-200 focus:border-amber-500 focus:ring-amber-500 rounded-lg bg-white text-black focus:border-amber-500 focus:ring-amber-500 rounded-lg"
                   placeholder="+91XXXXXXXXXX"
                 />
               </div>
@@ -212,7 +212,7 @@ export default function ContactForm() {
                     required
                     value={formData.eventDate}
                     onChange={handleChange}
-                    className="h-12 border-gray-200 focus:border-amber-500 focus:ring-amber-500 rounded-lg"
+                    className="h-12 border-gray-200 h-12 border-gray-200 focus:border-amber-500 focus:ring-amber-500 rounded-lg bg-white text-black focus:border-amber-500 focus:ring-amber-500 rounded-lg"
                   />
                 </div>
                 {/* Guest Count */}
@@ -227,7 +227,7 @@ export default function ContactForm() {
                     required
                     value={formData.guestCount}
                     onChange={handleChange}
-                    className="h-12 border-gray-200 focus:border-amber-500 focus:ring-amber-500 rounded-lg"
+                    className="h-12 border-gray-200 h-12 border-gray-200 focus:border-amber-500 focus:ring-amber-500 rounded-lg bg-white text-black focus:border-amber-500 focus:ring-amber-500 rounded-lg"
                     placeholder="e.g., 150 guests"
                   />
                 </div>
@@ -245,7 +245,7 @@ export default function ContactForm() {
                   required
                   value={formData.location}
                   onChange={handleChange}
-                  className="h-12 border-gray-200 focus:border-amber-500 focus:ring-amber-500 rounded-lg"
+                  className="h-12 border-gray-200 h-12 border-gray-200 focus:border-amber-500 focus:ring-amber-500 rounded-lg bg-white text-black focus:border-amber-500 focus:ring-amber-500 rounded-lg"
                   placeholder="City, Venue name (if known)"
                 />
               </div>
@@ -263,7 +263,7 @@ export default function ContactForm() {
                   required
                   value={formData.description}
                   onChange={handleChange}
-                  className="border-gray-200 focus:border-amber-500 focus:ring-amber-500 rounded-lg resize-none"
+                  className="border-gray-200 h-12 border-gray-200 focus:border-amber-500 focus:ring-amber-500 rounded-lg bg-white text-black focus:border-amber-500 focus:ring-amber-500 rounded-lg resize-none"
                   placeholder="Describe your event, style preferences, special moments you want captured, etc."
                 />
               </div>
@@ -283,7 +283,7 @@ export default function ContactForm() {
                       <div
                         className={`flex items-center p-3 rounded-lg border-2 transition-all duration-200 ${formData.budget === range
                             ? "border-amber-500 bg-amber-50"
-                            : "border-gray-200 hover:border-amber-300"
+                            : "border-gray-200 h-12 border-gray-200 focus:border-amber-500 focus:ring-amber-500 rounded-lg bg-white text-black hover:border-amber-300"
                           }`}
                       >
                         <input
