@@ -1,4 +1,5 @@
 "use client"
+import React from "react"
 
 import Image from "next/image"
 import Link from "next/link"
@@ -29,7 +30,7 @@ const blogData = {
     author: {
       name: "Abhishek Jain",
       role: "Lead Photographer",
-      image: "/placeholder.svg?height=60&width=60",
+      image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501584/_J7A8868_da7lor.jpg",
       bio: "Founder of FhotoFocus with over 8 years of wedding photography experience.",
     },
     heroImage: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501499/_J7A3450_sfixoc.jpg",
@@ -80,13 +81,13 @@ const blogData = {
       },
       {
         id: 5,
-        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501499/_J7A3450_sfixoc.jpg",
+        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501538/VS1_63_yftdsi.jpg",
         caption: "Family moments",
         category: "family",
       },
       {
         id: 6,
-        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501500/_J7A3451_qwerty.jpg",
+        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501584/_J7A8868_da7lor.jpg",
         caption: "Couple's romantic session",
         category: "couple",
       },
@@ -133,9 +134,9 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
   const [isBookmarked, setIsBookmarked] = useState(false)
   const [galleryFilter, setGalleryFilter] = useState("all")
   const [viewMode, setViewMode] = useState<"grid" | "masonry">("masonry")
-  const [showNewsletter, setShowNewsletter] = useState(false)
 
-  const blog = blogData[params.slug as keyof typeof blogData]
+const { slug } = React.use(params)
+const blog = blogData[slug as keyof typeof blogData]
 
   useEffect(() => {
     const handleScroll = () => {
@@ -149,7 +150,16 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
   }, [])
 
   if (!blog) {
-    return <div>Blog post not found</div>
+    return (
+      <div className="min-h-screen bg-[#f5f1eb] flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-stone-800 mb-4">Blog post not found</h1>
+          <Link href="/blogs" className="text-amber-600 hover:text-amber-700">
+            Back to Blogs
+          </Link>
+        </div>
+      </div>
+    )
   }
 
   const filteredGallery =
@@ -172,43 +182,44 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
         <Image src={blog.heroImage || "/placeholder.svg"} alt={blog.title} fill className="object-cover" priority />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 
-        {/* Navigation */}
-        <div className="absolute top-6 left-6 z-10">
+        {/* Navigation - Fixed positioning to avoid navbar overlap */}
+        <div className="absolute top-24 md:top-32 left-4 md:left-6 z-10">
           <Link
             href="/blogs"
-            className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300"
+            className="inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300 text-sm md:text-base"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>Back to Blogs</span>
+            <span className="hidden sm:inline">Back to Blogs</span>
+            <span className="sm:hidden">Back</span>
           </Link>
         </div>
 
         {/* Hero Content */}
-        <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+        <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8 lg:p-12">
           <div className="container mx-auto">
             <div className="max-w-4xl">
               {/* Meta */}
-              <div className="flex items-center gap-6 mb-6 text-white/80">
+              <div className="flex flex-wrap items-center gap-3 md:gap-6 mb-4 md:mb-6 text-white/80">
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
-                  <span>{blog.date}</span>
+                  <span className="text-sm md:text-base">{blog.date}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4" />
-                  <span>{blog.readTime}</span>
+                  <span className="text-sm md:text-base">{blog.readTime}</span>
                 </div>
-                <Badge variant="secondary" className="bg-white/20 text-white border-0">
+                <Badge variant="secondary" className="bg-white/20 text-white border-0 text-xs md:text-sm">
                   {blog.category}
                 </Badge>
               </div>
 
               {/* Title */}
-              <h1 className="font-playfair text-4xl md:text-6xl lg:text-7xl font-light text-white leading-tight mb-6">
+              <h1 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-light text-white leading-tight mb-4 md:mb-6">
                 {blog.title}
               </h1>
 
               {/* Lead */}
-              <p className="text-xl md:text-2xl text-white/90 font-light leading-relaxed max-w-3xl">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 font-light leading-relaxed max-w-3xl">
                 {blog.content.lead}
               </p>
             </div>
@@ -217,16 +228,16 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid lg:grid-cols-4 gap-12">
+      <div className="container mx-auto px-4 py-8 md:py-16">
+        <div className="grid lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Article Content */}
-          <div className="lg:col-span-3 space-y-12">
+          <div className="lg:col-span-3 space-y-8 md:space-y-12">
             {/* Social Actions */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex flex-wrap items-center gap-2 md:gap-4">
                 <button
                   onClick={() => setIsLiked(!isLiked)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${
+                  className={`flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 rounded-full transition-all duration-300 text-sm md:text-base ${
                     isLiked ? "bg-red-100 text-red-600" : "bg-stone-100 text-stone-600 hover:bg-stone-200"
                   }`}
                 >
@@ -236,17 +247,17 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
 
                 <button
                   onClick={() => setIsBookmarked(!isBookmarked)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${
+                  className={`flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 rounded-full transition-all duration-300 text-sm md:text-base ${
                     isBookmarked ? "bg-amber-100 text-amber-600" : "bg-stone-100 text-stone-600 hover:bg-stone-200"
                   }`}
                 >
                   <Bookmark className={`w-4 h-4 ${isBookmarked ? "fill-current" : ""}`} />
-                  <span>Save</span>
+                  <span className="hidden sm:inline">Save</span>
                 </button>
 
-                <button className="flex items-center gap-2 px-4 py-2 bg-stone-100 text-stone-600 rounded-full hover:bg-stone-200 transition-all duration-300">
+                <button className="flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 bg-stone-100 text-stone-600 rounded-full hover:bg-stone-200 transition-all duration-300 text-sm md:text-base">
                   <Share2 className="w-4 h-4" />
-                  <span>Share</span>
+                  <span className="hidden sm:inline">Share</span>
                 </button>
               </div>
 
@@ -265,64 +276,68 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
             {/* Article Sections */}
             <div className="prose prose-lg max-w-none">
               {blog.content.sections.map((section, index) => (
-                <div key={index} className="mb-12">
-                  <h2 className="font-playfair text-3xl font-light text-stone-800 mb-6">{section.heading}</h2>
-                  <p className="text-stone-600 leading-relaxed text-lg font-light">{section.content}</p>
+                <div key={index} className="mb-8 md:mb-12">
+                  <h2 className="font-playfair text-2xl md:text-3xl font-light text-stone-800 mb-4 md:mb-6">
+                    {section.heading}
+                  </h2>
+                  <p className="text-stone-600 leading-relaxed text-base md:text-lg font-light">{section.content}</p>
                 </div>
               ))}
             </div>
 
             {/* Photography Details */}
-            <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-8 border border-stone-200">
-              <h3 className="font-playfair text-2xl font-light text-stone-800 mb-6">Photography Details</h3>
-              <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-4 md:p-8 border border-stone-200">
+              <h3 className="font-playfair text-xl md:text-2xl font-light text-stone-800 mb-4 md:mb-6">
+                Photography Details
+              </h3>
+              <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
                 <div>
-                  <h4 className="font-medium text-stone-700 mb-2">Equipment Used</h4>
-                  <p className="text-stone-600 font-light">{blog.photographyDetails.equipment}</p>
+                  <h4 className="font-medium text-stone-700 mb-2 text-sm md:text-base">Equipment Used</h4>
+                  <p className="text-stone-600 font-light text-sm md:text-base">{blog.photographyDetails.equipment}</p>
                 </div>
                 <div>
-                  <h4 className="font-medium text-stone-700 mb-2">Lenses</h4>
-                  <p className="text-stone-600 font-light">{blog.photographyDetails.lenses}</p>
+                  <h4 className="font-medium text-stone-700 mb-2 text-sm md:text-base">Lenses</h4>
+                  <p className="text-stone-600 font-light text-sm md:text-base">{blog.photographyDetails.lenses}</p>
                 </div>
                 <div>
-                  <h4 className="font-medium text-stone-700 mb-2">Photography Style</h4>
-                  <p className="text-stone-600 font-light">{blog.photographyDetails.style}</p>
+                  <h4 className="font-medium text-stone-700 mb-2 text-sm md:text-base">Photography Style</h4>
+                  <p className="text-stone-600 font-light text-sm md:text-base">{blog.photographyDetails.style}</p>
                 </div>
                 <div>
-                  <h4 className="font-medium text-stone-700 mb-2">Team Size</h4>
-                  <p className="text-stone-600 font-light">{blog.photographyDetails.team}</p>
+                  <h4 className="font-medium text-stone-700 mb-2 text-sm md:text-base">Team Size</h4>
+                  <p className="text-stone-600 font-light text-sm md:text-base">{blog.photographyDetails.team}</p>
                 </div>
               </div>
             </div>
 
             {/* Venue Information */}
-            <div className="bg-gradient-to-r from-amber-50 to-stone-50 rounded-2xl p-8 border border-amber-200">
-              <h3 className="font-playfair text-2xl font-light text-stone-800 mb-4">Venue Information</h3>
-              <div className="flex items-start justify-between">
-                <div>
-                  <h4 className="text-xl font-medium text-stone-700 mb-2">{blog.venue.name}</h4>
-                  <p className="text-stone-600 mb-2">{blog.venue.location}</p>
-                  <p className="text-stone-600 font-light">{blog.venue.description}</p>
+            <div className="bg-gradient-to-r from-amber-50 to-stone-50 rounded-2xl p-4 md:p-8 border border-amber-200">
+              <h3 className="font-playfair text-xl md:text-2xl font-light text-stone-800 mb-4">Venue Information</h3>
+              <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
+                <div className="flex-1">
+                  <h4 className="text-lg md:text-xl font-medium text-stone-700 mb-2">{blog.venue.name}</h4>
+                  <p className="text-stone-600 mb-2 text-sm md:text-base">{blog.venue.location}</p>
+                  <p className="text-stone-600 font-light text-sm md:text-base">{blog.venue.description}</p>
                 </div>
-                <div className="text-right">
-                  <div className="text-2xl font-bold text-amber-600">{blog.venue.rating}</div>
-                  <div className="text-sm text-stone-500">Rating</div>
+                <div className="text-center sm:text-right">
+                  <div className="text-xl md:text-2xl font-bold text-amber-600">{blog.venue.rating}</div>
+                  <div className="text-xs md:text-sm text-stone-500">Rating</div>
                 </div>
               </div>
             </div>
 
             {/* Image Gallery */}
-            <div className="space-y-8">
-              <div className="flex items-center justify-between">
-                <h3 className="font-playfair text-3xl font-light text-stone-800">Wedding Gallery</h3>
-                <div className="flex items-center gap-4">
+            <div className="space-y-6 md:space-y-8">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <h3 className="font-playfair text-2xl md:text-3xl font-light text-stone-800">Wedding Gallery</h3>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                   {/* Filter */}
                   <div className="flex items-center gap-2">
                     <Filter className="w-4 h-4 text-stone-500" />
                     <select
                       value={galleryFilter}
                       onChange={(e) => setGalleryFilter(e.target.value)}
-                      className="bg-white border border-stone-200 rounded-lg px-3 py-1 text-sm"
+                      className="bg-white border border-stone-200 rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"
                     >
                       {galleryCategories.map((category) => (
                         <option key={category} value={category}>
@@ -352,24 +367,24 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
 
               {/* Gallery Grid */}
               <div
-                className={`grid gap-4 ${
-                  viewMode === "masonry" ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3" : "grid-cols-2 md:grid-cols-3"
+                className={`grid gap-3 md:gap-4 ${
+                  viewMode === "masonry" ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" : "grid-cols-2 md:grid-cols-3"
                 }`}
               >
                 {filteredGallery.map((image, index) => (
                   <div
                     key={image.id}
                     className={`relative group rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ${
-                      viewMode === "masonry" && index === 0 ? "md:col-span-2 md:row-span-2" : ""
-                    } ${viewMode === "masonry" && index % 5 === 2 ? "md:row-span-2" : ""}`}
+                      viewMode === "masonry" && index === 0 ? "sm:col-span-2 sm:row-span-2" : ""
+                    } ${viewMode === "masonry" && index % 5 === 2 ? "sm:row-span-2" : ""}`}
                   >
                     <div
                       className={`relative ${
                         viewMode === "masonry" && index === 0
-                          ? "h-96"
+                          ? "h-64 sm:h-96"
                           : viewMode === "masonry" && index % 5 === 2
-                            ? "h-80"
-                            : "h-64"
+                            ? "h-48 sm:h-80"
+                            : "h-48 sm:h-64"
                       }`}
                     >
                       <Image
@@ -379,8 +394,8 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <p className="text-sm font-light">{image.caption}</p>
+                      <div className="absolute bottom-2 md:bottom-4 left-2 md:left-4 right-2 md:right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <p className="text-xs md:text-sm font-light">{image.caption}</p>
                       </div>
                     </div>
                   </div>
@@ -389,60 +404,38 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
             </div>
 
             {/* Newsletter Signup */}
-            <div className="bg-gradient-to-r from-stone-800 to-stone-700 rounded-2xl p-8 text-white text-center">
-              <h3 className="font-playfair text-2xl font-light mb-4">Stay Updated</h3>
-              <p className="text-white/80 mb-6 font-light">
-                Subscribe to our newsletter for the latest wedding photography tips and featured stories.
-              </p>
-              <div className="flex gap-4 max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/30"
-                />
-                <Button className="bg-amber-600 hover:bg-amber-700 text-white">Subscribe</Button>
-              </div>
-            </div>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2">
-              {blog.tags.map((tag) => (
-                <Badge key={tag} variant="secondary" className="bg-stone-200 text-stone-700">
-                  #{tag}
-                </Badge>
-              ))}
-            </div>
+      
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-1 space-y-8">
+          <div className="lg:col-span-1 space-y-6 md:space-y-8">
             {/* Author */}
-            <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-stone-200">
-              <div className="flex items-center gap-4 mb-4">
+            <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-stone-200">
+              <div className="flex items-center gap-3 md:gap-4 mb-4">
                 <Image
                   src={blog.author.image || "/placeholder.svg"}
                   alt={blog.author.name}
-                  width={60}
-                  height={60}
-                  className="rounded-full"
+                  width={50}
+                  height={50}
+                  className="rounded-full w-12 h-12 md:w-15 md:h-15 object-cover"
                 />
                 <div>
-                  <h4 className="font-medium text-stone-800">{blog.author.name}</h4>
-                  <p className="text-sm text-stone-600">{blog.author.role}</p>
+                  <h4 className="font-medium text-stone-800 text-sm md:text-base">{blog.author.name}</h4>
+                  <p className="text-xs md:text-sm text-stone-600">{blog.author.role}</p>
                 </div>
               </div>
-              <p className="text-stone-600 text-sm font-light">{blog.author.bio}</p>
+              <p className="text-stone-600 text-xs md:text-sm font-light">{blog.author.bio}</p>
             </div>
 
             {/* Table of Contents */}
-            <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-stone-200">
-              <h4 className="font-medium text-stone-800 mb-4">Table of Contents</h4>
+            <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-stone-200">
+              <h4 className="font-medium text-stone-800 mb-4 text-sm md:text-base">Table of Contents</h4>
               <nav className="space-y-2">
                 {blog.content.sections.map((section, index) => (
                   <a
                     key={index}
                     href={`#section-${index}`}
-                    className="block text-sm text-stone-600 hover:text-stone-800 transition-colors duration-200"
+                    className="block text-xs md:text-sm text-stone-600 hover:text-stone-800 transition-colors duration-200"
                   >
                     {section.heading}
                   </a>
@@ -451,13 +444,13 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
             </div>
 
             {/* Related Posts */}
-            <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-stone-200">
-              <h4 className="font-medium text-stone-800 mb-4">Related Stories</h4>
+            <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-stone-200">
+              <h4 className="font-medium text-stone-800 mb-4 text-sm md:text-base">Related Stories</h4>
               <div className="space-y-4">
                 {relatedPosts.map((post) => (
                   <Link key={post.id} href={`/blogs/${post.slug}`} className="block group">
                     <div className="flex gap-3">
-                      <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                      <div className="relative w-12 h-12 md:w-16 md:h-16 rounded-lg overflow-hidden flex-shrink-0">
                         <Image
                           src={post.image || "/placeholder.svg"}
                           alt={post.title}
@@ -465,8 +458,8 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
                           className="object-cover group-hover:scale-110 transition-transform duration-300"
                         />
                       </div>
-                      <div>
-                        <h5 className="text-sm font-medium text-stone-800 group-hover:text-amber-700 transition-colors duration-200 line-clamp-2">
+                      <div className="flex-1 min-w-0">
+                        <h5 className="text-xs md:text-sm font-medium text-stone-800 group-hover:text-amber-700 transition-colors duration-200 line-clamp-2">
                           {post.title}
                         </h5>
                       </div>
@@ -477,16 +470,16 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
             </div>
 
             {/* Social Share */}
-            <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-stone-200">
-              <h4 className="font-medium text-stone-800 mb-4">Share This Story</h4>
-              <div className="flex gap-3">
-                <button className="flex-1 bg-blue-600 text-white py-2 px-3 rounded-lg text-sm hover:bg-blue-700 transition-colors duration-200">
+            <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-stone-200">
+              <h4 className="font-medium text-stone-800 mb-4 text-sm md:text-base">Share This Story</h4>
+              <div className="flex flex-col sm:flex-row lg:flex-col gap-2 md:gap-3">
+                <button className="flex-1 bg-blue-600 text-white py-2 px-3 rounded-lg text-xs md:text-sm hover:bg-blue-700 transition-colors duration-200">
                   Facebook
                 </button>
-                <button className="flex-1 bg-sky-500 text-white py-2 px-3 rounded-lg text-sm hover:bg-sky-600 transition-colors duration-200">
+                <button className="flex-1 bg-sky-500 text-white py-2 px-3 rounded-lg text-xs md:text-sm hover:bg-sky-600 transition-colors duration-200">
                   Twitter
                 </button>
-                <button className="flex-1 bg-pink-600 text-white py-2 px-3 rounded-lg text-sm hover:bg-pink-700 transition-colors duration-200">
+                <button className="flex-1 bg-pink-600 text-white py-2 px-3 rounded-lg text-xs md:text-sm hover:bg-pink-700 transition-colors duration-200">
                   Instagram
                 </button>
               </div>
