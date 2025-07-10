@@ -11,15 +11,15 @@ const preWeddingData = [
     id: "pre1",
     title: "Romantic Sunset Session",
     category: "Pre-Wedding",
-    image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501499/_J7A3450_sfixoc.jpg",
+    image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047872/IMG_0320_luhtpm.jpg",
     slug: "romantic-sunset-session",
     weddingDate: "March 15, 2024",
     location: "Goa Beach Resort",
-    couple: "Kavya & Rohit",
+    couple: "jenith & jindal",
     description:
-      "A breathtaking pre-wedding session captured during the golden hour at Goa's pristine beaches. Kavya and Rohit's love story unfolds against the backdrop of endless ocean views and romantic sunsets.",
+      "A breathtaking pre-wedding session captured during the golden hour at Goa's pristine beaches. jindal and jindal's love story unfolds against the backdrop of endless ocean views and romantic sunsets.",
     story:
-      "Kavya and Rohit chose the serene beaches of Goa for their pre-wedding shoot, wanting to capture their love story in a setting that reflected their free-spirited nature. The session began during the golden hour, with the couple walking hand-in-hand along the shoreline as waves gently lapped at their feet.",
+      "jenith and jindal chose the serene beaches of Goa for their pre-wedding shoot, wanting to capture their love story in a setting that reflected their free-spirited nature. The session began during the golden hour, with the couple walking hand-in-hand along the shoreline as waves gently lapped at their feet.",
     details: {
       location: "Goa Beach Resort",
       date: "March 15, 2024",
@@ -27,29 +27,36 @@ const preWeddingData = [
       outfits: "3 outfit changes",
     },
     images: [
-      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501499/_J7A3450_sfixoc.jpg",
-      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501497/_J7A3086_fktcdt.jpg",
-      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501538/VS1_63_yftdsi.jpg",
-      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501110/_A2A8144_dfhitk.jpg",
-      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501565/_A2A0821_lu9mj8.jpg",
-      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501572/_A2A9751_kwyltf.jpg",
-      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501540/VS1_66_rf2nxp.jpg",
-      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501472/_A2A6442_m9ufby.jpg",
+      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047897/IMG_0343_e5izfx.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047895/IMG_0342_tesqlm.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047891/IMG_0340_2_1_qqrpdm.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047890/IMG_0339_jyjmvf.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047888/IMG_0337_qadnsa.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047886/IMG_0335_xt9ik1.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047884/IMG_0333_nutpg9.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047883/IMG_0332_utcxx1.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047875/IMG_0324_tn0h8y.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047876/IMG_0325_holemv.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047878/IMG_0327_h0j2dm.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047871/IMG_0318_ehwhcq.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047868/IMG_0316_wbrtss.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047864/IMG_0313_q7j0jp.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047873/IMG_0322_jj1jtu.jpg"
     ],
   },
   {
     id: "pre2",
     title: "Beach Engagement",
     category: "Pre-Wedding",
-    image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501538/VS1_63_yftdsi.jpg",
+    image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047846/IMG_0297_z0axal.jpg",
     slug: "beach-engagement",
     weddingDate: "February 20, 2024",
     location: "Mumbai Coastline",
-    couple: "Ananya & Karan",
+    couple: "Raj & Saloni",
     description:
       "An enchanting engagement session along Mumbai's scenic coastline, capturing the couple's playful spirit and deep connection against the dramatic backdrop of crashing waves.",
     story:
-      "Ananya and Karan's engagement session was a celebration of their adventurous love story. Set against Mumbai's rugged coastline, the shoot captured their playful banter and tender moments.",
+      "Raj and Saloni's engagement session was a celebration of their adventurous love story. Set against Mumbai's rugged coastline, the shoot captured their playful banter and tender moments.",
     details: {
       location: "Mumbai Coastline",
       date: "February 20, 2024",
@@ -57,12 +64,115 @@ const preWeddingData = [
       outfits: "2 outfit changes",
     },
     images: [
-      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501538/VS1_63_yftdsi.jpg",
-      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501540/VS1_66_rf2nxp.jpg",
-      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501541/VS1_68_rvpn6k.jpg",
-      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501542/VS1_72_uzlbd0.jpg",
-      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501543/VS1_74_tfejme.jpg",
-      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501544/VS1_78_es7hss.jpg",
+       "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047861/IMG_0311_gx6tji.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047859/IMG_0310_vsrl50.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047858/IMG_0309_p6f5qv.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047857/IMG_0308_armoz5.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047862/IMG_0312_zhnz5z.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047856/IMG_0307_jjazsf.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047854/IMG_0305_kz4gkl.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047853/IMG_0304_snvgzw.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047852/IMG_0303_b4azna.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047851/IMG_0302_ssnon1.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047850/IMG_0301_cqfmjv.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047849/IMG_0300_fogj9y.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047847/IMG_0298_xmfwsu.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047846/IMG_0297_z0axal.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047848/IMG_0299_jhfmza.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047845/IMG_0296_ft7zwd.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047844/IMG_0295_yd82qz.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047843/IMG_0294_v0pj9c.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047838/IMG_0289_fdlxzl.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047836/IMG_0288_pa9e0i.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047834/IMG_0286_picl0w.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047831/IMG_0283_akaeyn.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047831/IMG_0284_oeqt0n.jpg"
+    ],
+  },
+  {
+    id: "pre3",
+    title: "Beach Engagement",
+    category: "Pre-Wedding",
+    image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047543/IMG_0351_qqzdyw.jpg",
+    slug: "garden-romance",
+    weddingDate: "February 20, 2024",
+    location: "Mumbai Coastline",
+    couple: "Anjali & Praful",
+    description:
+      "An enchanting engagement session along Mumbai's scenic coastline, capturing the couple's playful spirit and deep connection against the dramatic backdrop of crashing waves.",
+    story:
+      "Anjali and Praful's engagement session was a celebration of their adventurous love story. Set against Mumbai's rugged coastline, the shoot captured their playful banter and tender moments.",
+    details: {
+      location: "Mumbai Coastline",
+      date: "February 20, 2024",
+      duration: "3 hours",
+      outfits: "2 outfit changes",
+    },
+    images: [
+      "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047566/IMG_0385_lagf2u.webp",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047565/IMG_0383_yhzxvt.webp",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047564/IMG_0381_x9vroz.webp",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047563/IMG_0380_guuror.webp",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047560/IMG_0373_zaj0km.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047560/IMG_0372_amkxnv.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047561/IMG_0374_aejxe2.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047562/IMG_0379_lj2j5g.webp",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047558/IMG_0371_qi5icq.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047557/IMG_0370_tueqlq.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047556/IMG_0367_jvjgoj.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047554/IMG_0365_ika3nk.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047556/IMG_0369_mtgnq8.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047555/IMG_0366_fyub0e.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047552/IMG_0363_smxfmh.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047549/IMG_0359_mytx70.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047546/IMG_0356_aqjpm6.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047543/IMG_0351_qqzdyw.jpg"
+
+    ],
+  },
+  {
+    id: "pre4",
+    title: "Beach Engagement",
+    category: "Pre-Wedding",
+    image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047931/ABJ_1009_jvokfx.jpg",
+    slug: "urban-love-story",
+    weddingDate: "February 20, 2024",
+    location: "Mumbai Coastline",
+    couple: "Yash & Shreya",
+    description:
+      "An enchanting engagement session along Mumbai's scenic coastline, capturing the couple's playful spirit and deep connection against the dramatic backdrop of crashing waves.",
+    story:
+      "Yash and Shreya's engagement session was a celebration of their adventurous love story. Set against Mumbai's rugged coastline, the shoot captured their playful banter and tender moments.",
+    details: {
+      location: "Mumbai Coastline",
+      date: "February 20, 2024",
+      duration: "3 hours",
+      outfits: "2 outfit changes",
+    },
+    images: [
+       "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047861/IMG_0311_gx6tji.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047859/IMG_0310_vsrl50.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047858/IMG_0309_p6f5qv.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047857/IMG_0308_armoz5.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047862/IMG_0312_zhnz5z.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047856/IMG_0307_jjazsf.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047854/IMG_0305_kz4gkl.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047853/IMG_0304_snvgzw.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047852/IMG_0303_b4azna.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047851/IMG_0302_ssnon1.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047850/IMG_0301_cqfmjv.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047849/IMG_0300_fogj9y.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047847/IMG_0298_xmfwsu.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047846/IMG_0297_z0axal.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047848/IMG_0299_jhfmza.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047845/IMG_0296_ft7zwd.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047844/IMG_0295_yd82qz.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047843/IMG_0294_v0pj9c.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047838/IMG_0289_fdlxzl.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047836/IMG_0288_pa9e0i.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047834/IMG_0286_picl0w.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047831/IMG_0283_akaeyn.jpg",
+  "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047831/IMG_0284_oeqt0n.jpg"
     ],
   },
 ]
@@ -78,14 +188,14 @@ export default function PortfolioPage({ params }: { params: { slug: string } }) 
   }
 
   return (
-    <div className="min-h-screen pt-20 bg-stone-50">
+    <div className="min-h-screen  bg-stone-50">
       {/* Hero Section */}
-      <div className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] overflow-hidden">
+      <div className="relative h-[50vh] sm:h-[60vh] md:h-[80vh] overflow-hidden">
         <Image
-          src={portfolio.image || "/placeholder.svg"}
+          src={portfolio.image2 || "/placeholder.svg"}
           alt={portfolio.title}
           fill
-          className="object-cover"
+          className="object-cover "
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />

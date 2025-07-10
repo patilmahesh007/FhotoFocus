@@ -14,7 +14,7 @@ export default function Hero({ image, alt, title, subtitle }: HeroProps) {
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501499/_J7A3450_sfixoc.jpg"
+          src="https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752064692/IMG_5085_sp4gof.jpg"
           alt={alt}
           fill
           className="object-cover"
