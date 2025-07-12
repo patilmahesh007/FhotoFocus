@@ -77,7 +77,7 @@ export const siteData = {
         title: "Wedding Photography",
         description:
           "Complete wedding coverage from pre-wedding ceremonies to reception, capturing every precious moment of your special day.",
-        image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501584/_J7A8868_da7lor.jpg",
+        image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752064691/IMG_5090_vfqfpb.jpg",
         features: [
           "Full day wedding coverage",
           "Pre-wedding ceremonies",
@@ -91,7 +91,7 @@ export const siteData = {
         title: "Pre-Wedding Sessions",
         description:
           "Romantic and creative pre-wedding photography sessions that tell your unique love story in beautiful locations.",
-        image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501499/_J7A3450_sfixoc.jpg",
+        image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752047975/ABJ_9561_d32ev8.jpg",
         features: [
           "Location scouting",
           "Multiple outfit changes",
@@ -105,7 +105,7 @@ export const siteData = {
         title: "Fashion Photography",
         description:
           "Professional fashion and portrait photography for models, brands, and individuals looking for stunning imagery.",
-        image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501565/_A2A0821_lu9mj8.jpg",
+        image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752064788/IMG_0640_pmvu7y.jpg",
         features: [
           "Studio and outdoor shoots",
           "Professional lighting",

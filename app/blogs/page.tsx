@@ -5,52 +5,52 @@ import { Calendar, Clock, ArrowRight } from "lucide-react"
 const blogPosts = [
   {
     id: 1,
-    slug: "aashka-shanil-fairmont-wedding",
-    title: "Aashka and Shanil's Unforgettable Wedding Celebration at Fairmont and Raffles Jaipur",
+    slug: "Karan-Ashika-fairmont-wedding",
+    title: "Aashka and Ashika's Unforgettable Wedding Celebration at Fairmont and Raffles Jaipur",
     excerpt:
-      "Aashka and Shanil's wedding at Fairmont & Raffles Jaipur was a spectacular celebration of love, tradition, and grandeur. From intimate ceremonies to grand celebrations, every moment was captured with artistic precision.",
+      "Aashka and Ashika's wedding at Fairmont & Raffles Jaipur was a spectacular celebration of love, tradition, and grandeur. From intimate ceremonies to grand celebrations, every moment was captured with artistic precision.",
     date: "15 MAR, 2025",
     readTime: "8 min read",
     category: "Wedding",
-    image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501499/_J7A3450_sfixoc.jpg",
+    image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752064711/IMG_3027_xfohog.jpg",
     featured: true,
   },
-  {
-    id: 2,
-    slug: "priya-arjun-udaipur-prewedding",
-    title: "Priya & Arjun's Romantic Pre-Wedding Session in Udaipur",
-    excerpt:
-      "A dreamy pre-wedding shoot in the City of Lakes, capturing the essence of romance against the backdrop of majestic palaces and serene waters.",
-    date: "08 MAR, 2025",
-    readTime: "6 min read",
-    category: "Pre-Wedding",
-    image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501500/_J7A3451_qwerty.jpg",
-    featured: false,
-  },
-  {
-    id: 3,
-    slug: "fashion-editorial-mumbai",
-    title: "Contemporary Fashion Editorial: Urban Elegance in Mumbai",
-    excerpt:
-      "An exploration of modern fashion photography in Mumbai's urban landscape, blending contemporary style with architectural beauty.",
-    date: "02 MAR, 2025",
-    readTime: "5 min read",
-    category: "Fashion",
-    image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501501/_J7A3452_fashion.jpg",
-    featured: false,
-  },
-  {
-    id: 4,
-    slug: "destination-wedding-goa",
-    title: "Beachside Bliss: A Destination Wedding in Goa",
-    excerpt:
-      "Sun, sand, and celebration - capturing the magic of a beachside wedding in Goa with its perfect blend of tradition and tropical paradise.",
-    date: "25 FEB, 2025",
-    readTime: "7 min read",
-    category: "Wedding",
-    image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501502/_J7A3453_goa.jpg",
-    featured: false,
-  },
+  // {
+  //   id: 2,
+  //   slug: "priya-arjun-udaipur-prewedding",
+  //   title: "Priya & Arjun's Romantic Pre-Wedding Session in Udaipur",
+  //   excerpt:
+  //     "A dreamy pre-wedding shoot in the City of Lakes, capturing the essence of romance against the backdrop of majestic palaces and serene waters.",
+  //   date: "08 MAR, 2025",
+  //   readTime: "6 min read",
+  //   category: "Pre-Wedding",
+  //   image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501500/_J7A3451_qwerty.jpg",
+  //   featured: false,
+  // },
+  // {
+  //   id: 3,
+  //   slug: "fashion-editorial-mumbai",
+  //   title: "Contemporary Fashion Editorial: Urban Elegance in Mumbai",
+  //   excerpt:
+  //     "An exploration of modern fashion photography in Mumbai's urban landscape, blending contemporary style with architectural beauty.",
+  //   date: "02 MAR, 2025",
+  //   readTime: "5 min read",
+  //   category: "Fashion",
+  //   image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501501/_J7A3452_fashion.jpg",
+  //   featured: false,
+  // },
+  // {
+  //   id: 4,
+  //   slug: "destination-wedding-goa",
+  //   title: "Beachside Bliss: A Destination Wedding in Goa",
+  //   excerpt:
+  //     "Sun, sand, and celebration - capturing the magic of a beachside wedding in Goa with its perfect blend of tradition and tropical paradise.",
+  //   date: "25 FEB, 2025",
+  //   readTime: "7 min read",
+  //   category: "Wedding",
+  //   image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501502/_J7A3453_goa.jpg",
+  //   featured: false,
+  // },
 ]
 
 export default function BlogsPage() {

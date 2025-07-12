@@ -22,20 +22,20 @@ import { Badge } from "@/components/ui/badge"
 
 // Mock blog data
 const blogData = {
-  "aashka-shanil-fairmont-wedding": {
-    title: "Aashka and Shanil's Unforgettable Wedding Celebration at Fairmont and Raffles Jaipur",
+  "Karan-Ashika-fairmont-wedding": {
+    title: "Karan  and Ashika's Unforgettable Wedding Celebration at Fairmont and Raffles Jaipur",
     date: "15 MAR, 2025",
     readTime: "8 min read",
     category: "Wedding",
     author: {
       name: "Abhishek Jain",
       role: "Lead Photographer",
-      image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501584/_J7A8868_da7lor.jpg",
+      image: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752064711/IMG_3027_xfohog.jpg",
       bio: "Founder of FhotoFocus with over 8 years of wedding photography experience.",
     },
-    heroImage: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501499/_J7A3450_sfixoc.jpg",
+    heroImage: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752064711/IMG_3027_xfohog.jpg",
     content: {
-      lead: "Aashka and Shanil's wedding at Fairmont & Raffles Jaipur was nothing short of magical. Set against the backdrop of Jaipur's royal heritage, their celebration was a perfect blend of tradition, elegance, and contemporary style.",
+      lead: "Karan  and Ashika's wedding at Fairmont & Raffles Jaipur was nothing short of magical. Set against the backdrop of Jaipur's royal heritage, their celebration was a perfect blend of tradition, elegance, and contemporary style.",
       sections: [
         {
           heading: "The Venue: A Royal Setting",
@@ -50,44 +50,44 @@ const blogData = {
         {
           heading: "Capturing Emotions",
           content:
-            "Our team focused on capturing not just the grand moments, but also the intimate glances, the tears of joy, and the laughter that filled the air. These candid moments truly tell the story of Aashka and Shanil's love.",
+            "Our team focused on capturing not just the grand moments, but also the intimate glances, the tears of joy, and the laughter that filled the air. These candid moments truly tell the story of Karan  and Ashika's love.",
         },
       ],
     },
     gallery: [
       {
         id: 1,
-        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501499/_J7A3450_sfixoc.jpg",
+        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752064719/IMG_3889_fwr2i3.jpg",
         caption: "The couple's first look moment",
         category: "ceremony",
       },
       {
         id: 2,
-        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501500/_J7A3451_qwerty.jpg",
+        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752064708/IMG_2800_pduec7.jpg",
         caption: "Traditional Mehendi ceremony",
         category: "mehendi",
       },
       {
         id: 3,
-        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501501/_J7A3452_fashion.jpg",
+        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752064717/IMG_3865_unie0y.jpg",
         caption: "Bridal portrait session",
         category: "portraits",
       },
       {
         id: 4,
-        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501502/_J7A3453_goa.jpg",
+        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752064715/IMG_3093_cgbrt7.jpg",
         caption: "Reception celebration",
         category: "reception",
       },
       {
         id: 5,
-        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501538/VS1_63_yftdsi.jpg",
+        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752064712/IMG_3013_cniegm.jpg",
         caption: "Family moments",
         category: "family",
       },
       {
         id: 6,
-        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1750501584/_J7A8868_da7lor.jpg",
+        url: "https://res.cloudinary.com/dtrrsp1ll/image/upload/v1752064711/IMG_3016_aszgym.jpg",
         caption: "Couple's romantic session",
         category: "couple",
       },
@@ -286,30 +286,7 @@ const blog = blogData[slug as keyof typeof blogData]
             </div>
 
             {/* Photography Details */}
-            <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-4 md:p-8 border border-stone-200">
-              <h3 className="font-playfair text-xl md:text-2xl font-light text-stone-800 mb-4 md:mb-6">
-                Photography Details
-              </h3>
-              <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
-                <div>
-                  <h4 className="font-medium text-stone-700 mb-2 text-sm md:text-base">Equipment Used</h4>
-                  <p className="text-stone-600 font-light text-sm md:text-base">{blog.photographyDetails.equipment}</p>
-                </div>
-                <div>
-                  <h4 className="font-medium text-stone-700 mb-2 text-sm md:text-base">Lenses</h4>
-                  <p className="text-stone-600 font-light text-sm md:text-base">{blog.photographyDetails.lenses}</p>
-                </div>
-                <div>
-                  <h4 className="font-medium text-stone-700 mb-2 text-sm md:text-base">Photography Style</h4>
-                  <p className="text-stone-600 font-light text-sm md:text-base">{blog.photographyDetails.style}</p>
-                </div>
-                <div>
-                  <h4 className="font-medium text-stone-700 mb-2 text-sm md:text-base">Team Size</h4>
-                  <p className="text-stone-600 font-light text-sm md:text-base">{blog.photographyDetails.team}</p>
-                </div>
-              </div>
-            </div>
-
+         
             {/* Venue Information */}
             <div className="bg-gradient-to-r from-amber-50 to-stone-50 rounded-2xl p-4 md:p-8 border border-amber-200">
               <h3 className="font-playfair text-xl md:text-2xl font-light text-stone-800 mb-4">Venue Information</h3>
